@@ -6,8 +6,8 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -58,7 +58,7 @@ public class DriveTrain extends SubsystemBase {
     drive.tankDrive(l, r);
   } */
 
-  public void driveWithJoyticks(Joystick controller, double speed)
+  public void driveWithJoyticks(XboxController controller, double speed)
   {
     drive.arcadeDrive(controller.getRawAxis(Constants.GP_LEFT_Y_AXIS) * speed, controller.getRawAxis(Constants.GP_LEFT_X_AXIS) * speed);
   }

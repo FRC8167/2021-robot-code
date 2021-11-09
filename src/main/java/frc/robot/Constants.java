@@ -18,7 +18,8 @@ public final class Constants {
 	public static final int RIGHT_FRONT = 2;
 	public static final int LEFT_BACK = 3;
     public static final int RIGHT_BACK = 4;
-    
+    public static final int INTAKE_MOTOR = 6;
+
     // gamepad controller
 	public static final int GP_LEFT_Y_AXIS = 0;
     public static final int GP_LEFT_X_AXIS = 1;
@@ -26,4 +27,9 @@ public final class Constants {
 	public static final double DRIVE_FORWARD_TIME = 3.0;
     public static final double AUTONOMOUS_SPEED = 0.4;
     public static final int JOYSTICK_NUMBER = 0;
+
+    //Solenoid
+    public static final int K_INTAKEUP = 7;
+    public static final int K_INTAKEDOWN = 8;
+    public static final double INTAKE_SPEED = 0.5;
 	}

@@ -5,12 +5,15 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
+//import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.CollectBall;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -23,7 +26,10 @@ public class RobotContainer {
   private final DriveTrain driveTrain;
   private final DriveWithJoysticks driveWithJoysticks;
   private final DriveForwardTimed driveForwardTimed;
-  public static Joystick driverJoystick;
+  public static XboxController driverJoystick;
+
+  private final Intake intake;
+  private final CollectBall collectBall;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -35,7 +41,10 @@ public class RobotContainer {
     driveForwardTimed = new DriveForwardTimed(driveTrain);
     driveForwardTimed.addRequirements(driveTrain);
 
-    driverJoystick = new Joystick(Constants.JOYSTICK_NUMBER);;
+    driverJoystick = new XboxController(Constants.JOYSTICK_NUMBER);
+    intake = new Intake();
+    collectBall = new CollectBall(intake);
+    collectBall.addRequirements(intake);
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -46,7 +55,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    JoystickButton intakeButton = new JoystickButton(driverJoystick,XboxController.Button.kBumperRight.value);
+    intakeButton.whileHeld(new CollectBall(intake));
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
