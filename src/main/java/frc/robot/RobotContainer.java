@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.CollectBall;
+import frc.robot.commands.RunIntakeMotor;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.subsystems.DriveTrain;
@@ -31,7 +31,7 @@ public class RobotContainer {
   public static Joystick driverJoystick;
   //hello
   private final Intake intake;
-  private final CollectBall collectBall;
+  private final RunIntakeMotor collectBall;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -45,7 +45,7 @@ public class RobotContainer {
 
     driverJoystick = new Joystick(Constants.JOYSTICK_NUMBER);
     intake = new Intake();
-    collectBall = new CollectBall(intake);
+    collectBall = new RunIntakeMotor(intake);
     collectBall.addRequirements(intake);
     // Configure the button bindings
     configureButtonBindings();
@@ -59,9 +59,16 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     JoystickButton IntakeButton = new JoystickButton(driverJoystick, Constants.kGamepadBumperRight);
-    IntakeButton.whileHeld(new CollectBall(intake));
+    IntakeButton.whileHeld(new RunCommand(() -> intake.setSpeed(Constants.INTAKE_SPEED), intake));
+    IntakeButton.whenReleased(new RunCommand(() -> intake.stop(), intake));
     JoystickButton ReverseIntakeButton = new JoystickButton(driverJoystick, Constants.kGamepadBumperLeft);
-    ReverseIntakeButton.whenHeld(new RunCommand(() -> intake.reverse(), intake));
+    ReverseIntakeButton.whileHeld(new RunCommand(() -> intake.setSpeed(-Constants.INTAKE_SPEED), intake));
+    ReverseIntakeButton.whenReleased(new RunCommand(() -> intake.stop(), intake));
+
+    JoystickButton solenoidButtonOut = new JoystickButton(driverJoystick, Constants.gamepadAButton);
+    solenoidButtonOut.whenPressed(new RunCommand(() -> intake.forward(), intake));
+    JoystickButton solenoidButtonIn = new JoystickButton(driverJoystick, Constants.gamepadBButton);
+    solenoidButtonIn.whenPressed(new RunCommand(() -> intake.reverse(), intake));
   }
 
   /**

@@ -8,13 +8,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 
-public class CollectBall extends CommandBase {
+public class RunIntakeMotor extends CommandBase {
   /** Creates a new CollectBall. */
   Intake intake;
-  public CollectBall(Intake i) {
+  public RunIntakeMotor(Intake i) {
     // Use addRequirements() here to declare subsystem dependencies.
-  intake = i;
-  addRequirements(intake);
+    this.intake = i;
+    addRequirements(intake);
   }
 
   // Called when the command is initially scheduled.
@@ -24,7 +24,7 @@ public class CollectBall extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.collectBall(Constants.INTAKE_SPEED);
+    intake.setSpeed(Constants.INTAKE_SPEED);
   }
 
   // Called once the command ends or is interrupted.

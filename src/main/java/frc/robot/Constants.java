@@ -18,6 +18,7 @@ public final class Constants {
 	public static final int RIGHT_FRONT = 2;
 	public static final int LEFT_BACK = 3;
     public static final int RIGHT_BACK = 4;
+    public static final int PCM_CAN_ID = 5;
     public static final int INTAKE_MOTOR = 6;
 
     // gamepad controller
@@ -31,8 +32,11 @@ public final class Constants {
     //Solenoid
     public static final int K_INTAKEUP = 7;
     public static final int K_INTAKEDOWN = 8;
-    public static final double INTAKE_SPEED = 0.5;
+    public static final double INTAKE_SPEED = 0.1;
 
+    public static int gamepadAButton = 1;
+    public static int gamepadBButton = 2;
+    
 	public static int kGamepadBumperRight = 6;
 	public static int kGamepadBumperLeft = 5;
 	}
