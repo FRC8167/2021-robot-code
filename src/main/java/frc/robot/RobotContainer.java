@@ -5,14 +5,16 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
+//import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.CollectBall;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -26,7 +28,7 @@ public class RobotContainer {
   private final DriveTrain driveTrain;
   private final DriveWithJoysticks driveWithJoysticks;
   private final DriveForwardTimed driveForwardTimed;
-  public static XboxController driverJoystick;
+  public static Joystick driverJoystick;
   //hello
   private final Intake intake;
   private final CollectBall collectBall;
@@ -41,7 +43,7 @@ public class RobotContainer {
     driveForwardTimed = new DriveForwardTimed(driveTrain);
     driveForwardTimed.addRequirements(driveTrain);
 
-    driverJoystick = new XboxController(Constants.JOYSTICK_NUMBER);
+    driverJoystick = new Joystick(Constants.JOYSTICK_NUMBER);
     intake = new Intake();
     collectBall = new CollectBall(intake);
     collectBall.addRequirements(intake);
@@ -56,8 +58,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton intakeButton = new JoystickButton(driverJoystick,XboxController.Button.kBumperRight.value);
-    intakeButton.whileHeld(new CollectBall(intake));
+    JoystickButton IntakeButton = new JoystickButton(driverJoystick, Constants.kGamepadBumperRight);
+    IntakeButton.whileHeld(new CollectBall(intake));
+    JoystickButton ReverseIntakeButton = new JoystickButton(driverJoystick, Constants.kGamepadBumperLeft);
+    ReverseIntakeButton.whenHeld(new RunCommand(() -> intake.reverse(), intake));
   }
 
   /**

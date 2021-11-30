@@ -9,24 +9,25 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 //import edu.wpi.first.wpilibj.Solenoid;
+//import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
   public final CANSparkMax intake;
-  //public final Solenoid solUp;
-  //public final Solenoid solDown;
+ // public final Solenoid solUp;
+ // public final Solenoid solDown;
   /** Creates a new Intake. */
   public Intake() {
     intake = new CANSparkMax(Constants.INTAKE_MOTOR, MotorType.kBrushed);
-    intake.restoreFactoryDefaults();
-    intake.setSmartCurrentLimit(40);
+    //intake.restoreFactoryDefaults();
+    //intake.setSmartCurrentLimit(40);
     intake.setIdleMode(IdleMode.kCoast);
-    intake.setInverted(true); //not sure
-    intake.burnFlash();
+   // intake.setInverted(true); //not sure
+   // intake.burnFlash();
 
-    //solUp = new Solenoid(Constants.K_INTAKEUP);
-    //solDown = new Solenoid(Constants.K_INTAKEDOWN);
+   // solUp = new Solenoid(Constants.K_INTAKEUP);
+   // solDown = new Solenoid(Constants.K_INTAKEDOWN);
 
   }
 

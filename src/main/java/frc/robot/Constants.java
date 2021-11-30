@@ -32,4 +32,7 @@ public final class Constants {
     public static final int K_INTAKEUP = 7;
     public static final int K_INTAKEDOWN = 8;
     public static final double INTAKE_SPEED = 0.5;
+
+	public static int kGamepadBumperRight = 6;
+	public static int kGamepadBumperLeft = 5;
 	}
