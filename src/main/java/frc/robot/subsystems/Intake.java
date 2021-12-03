@@ -26,7 +26,7 @@ public class Intake extends SubsystemBase {
    // intake.burnFlash();
 
    solenoid = new DoubleSolenoid(Constants.PCM_CAN_ID, 1, 2);
-    solenoid.set(DoubleSolenoid.Value.kOff);
+    solenoid.set(DoubleSolenoid.Value.kForward);
   }
 
   @Override

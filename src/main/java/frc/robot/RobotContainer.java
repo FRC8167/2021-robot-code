@@ -14,6 +14,7 @@ import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -65,10 +66,8 @@ public class RobotContainer {
     ReverseIntakeButton.whileHeld(new RunCommand(() -> intake.setSpeed(-Constants.INTAKE_SPEED), intake));
     ReverseIntakeButton.whenReleased(new RunCommand(() -> intake.stop(), intake));
 
-    JoystickButton solenoidButtonOut = new JoystickButton(driverJoystick, Constants.gamepadAButton);
-    solenoidButtonOut.whenPressed(new RunCommand(() -> intake.forward(), intake));
     JoystickButton solenoidButtonIn = new JoystickButton(driverJoystick, Constants.gamepadBButton);
-    solenoidButtonIn.whenPressed(new RunCommand(() -> intake.reverse(), intake));
+    solenoidButtonIn.whenActive(new InstantCommand(() -> intake.solenoid.toggle(), intake));
   }
 
   /**
