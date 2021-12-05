@@ -13,30 +13,30 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    // can for wiring team
+	// can for wiring team
 	public static final int LEFT_FRONT = 1;
 	public static final int RIGHT_FRONT = 2;
 	public static final int LEFT_BACK = 3;
-    public static final int RIGHT_BACK = 4;
-    public static final int PCM_CAN_ID = 5;
-    public static final int INTAKE_MOTOR = 6;
+	public static final int RIGHT_BACK = 4;
+	public static final int PCM_CAN_ID = 5;
+	public static final int INTAKE_MOTOR = 6;
 
-    // gamepad controller
+	// gamepad controller
 	public static final int GP_LEFT_Y_AXIS = 0;
-    public static final int GP_LEFT_X_AXIS = 1;
-    public static final double DRIVETRAINSPEED = 0.7;
+	public static final int GP_LEFT_X_AXIS = 1;
+	public static final double DRIVETRAINSPEED = 0.7;
 	public static final double DRIVE_FORWARD_TIME = 3.0;
-    public static final double AUTONOMOUS_SPEED = 0.4;
-    public static final int JOYSTICK_NUMBER = 0;
+	public static final double AUTONOMOUS_SPEED = 0.4;
+	public static final int JOYSTICK_NUMBER = 0;
 
-    //Solenoid
-    public static final int K_INTAKEUP = 7;
-    public static final int K_INTAKEDOWN = 8;
-    public static final double INTAKE_SPEED = 0.1;
+	//Solenoid
+	public static final int K_INTAKEUP = 7;
+	public static final int K_INTAKEDOWN = 8;
+	public static final double INTAKE_SPEED = 0.1;
 
-    public static int gamepadAButton = 1;
-    public static int gamepadBButton = 2;
-    
+	public static int gamepadAButton = 1;
+	public static int gamepadBButton = 2;
+	
 	public static int kGamepadBumperRight = 6;
 	public static int kGamepadBumperLeft = 5;
-	}
+}

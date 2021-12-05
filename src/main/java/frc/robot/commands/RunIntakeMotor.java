@@ -9,36 +9,36 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 
 public class RunIntakeMotor extends CommandBase {
-  Intake intake;
-  
-  /** Creates a new CollectBall. */
-  public RunIntakeMotor(Intake intake) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    this.intake = intake;
-    addRequirements(this.intake);
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-	  
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    intake.setSpeed(Constants.INTAKE_SPEED);
-  }
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    intake.stop();
-  }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return true;
-  }
+	Intake intake;
+	
+	/** Creates a new CollectBall. */
+	public RunIntakeMotor(Intake intake) {
+		// Use addRequirements() here to declare subsystem dependencies.
+		this.intake = intake;
+		addRequirements(this.intake);
+	}
+	
+	// Called when the command is initially scheduled.
+	@Override
+	public void initialize() {
+		
+	}
+	
+	// Called every time the scheduler runs while the command is scheduled.
+	@Override
+	public void execute() {
+		intake.setSpeed(Constants.INTAKE_SPEED);
+	}
+	
+	// Called once the command ends or is interrupted.
+	@Override
+	public void end(boolean interrupted) {
+		intake.stop();
+	}
+	
+	// Returns true when the command should end.
+	@Override
+	public boolean isFinished() {
+		return true;
+	}
 }
