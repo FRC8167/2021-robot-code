@@ -9,17 +9,20 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 
 public class RunIntakeMotor extends CommandBase {
-  /** Creates a new CollectBall. */
   Intake intake;
-  public RunIntakeMotor(Intake i) {
+  
+  /** Creates a new CollectBall. */
+  public RunIntakeMotor(Intake intake) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.intake = i;
-    addRequirements(intake);
+    this.intake = intake;
+    addRequirements(this.intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+	  
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

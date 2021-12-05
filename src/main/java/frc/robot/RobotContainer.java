@@ -27,31 +27,25 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveTrain driveTrain;
-  private final DriveWithJoysticks driveWithJoysticks;
-  private final DriveForwardTimed driveForwardTimed;
   public static Joystick driverJoystick;
-  //hello
-  private final Intake intake;
-  private final RunIntakeMotor collectBall;
-
+  public final Intake intake;
+  public final RunIntakeMotor collectBall;
+  private final DriveForwardTimed driveForwardTimed;
+  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    driveTrain = new DriveTrain();
-    driveWithJoysticks = new DriveWithJoysticks(driveTrain);
-    driveWithJoysticks.addRequirements(driveTrain);
-    driveTrain.setDefaultCommand(driveWithJoysticks);
-
-    driveForwardTimed = new DriveForwardTimed(driveTrain);
-    driveForwardTimed.addRequirements(driveTrain);
-
-    driverJoystick = new Joystick(Constants.JOYSTICK_NUMBER);
+	driveTrain = new DriveTrain();
     intake = new Intake();
-    collectBall = new RunIntakeMotor(intake);
-    collectBall.addRequirements(intake);
+	driverJoystick = new Joystick(Constants.JOYSTICK_NUMBER);
+	
+    driveTrain.setDefaultCommand(new DriveWithJoysticks(driveTrain, Constants.DRIVETRAINSPEED));
+	driveForwardTimed = new DriveForwardTimed(driveTrain, Constants.DRIVE_FORWARD_TIME, Constants.AUTONOMOUS_SPEED);
+	  collectBall = new RunIntakeMotor(intake);
+	
     // Configure the button bindings
     configureButtonBindings();
   }
-
+  
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
@@ -61,11 +55,12 @@ public class RobotContainer {
   private void configureButtonBindings() {
     JoystickButton IntakeButton = new JoystickButton(driverJoystick, Constants.kGamepadBumperRight);
     IntakeButton.whileHeld(new RunCommand(() -> intake.setSpeed(Constants.INTAKE_SPEED), intake));
-    IntakeButton.whenReleased(new RunCommand(() -> intake.stop(), intake));
+	IntakeButton.whenReleased(new RunCommand(() -> intake.stop(), intake));
+	
     JoystickButton ReverseIntakeButton = new JoystickButton(driverJoystick, Constants.kGamepadBumperLeft);
-    ReverseIntakeButton.whileHeld(new RunCommand(() -> intake.setSpeed(-Constants.INTAKE_SPEED), intake));
+	ReverseIntakeButton.whileHeld(new RunCommand(() -> intake.setSpeed(-Constants.INTAKE_SPEED), intake));
     ReverseIntakeButton.whenReleased(new RunCommand(() -> intake.stop(), intake));
-
+	
     JoystickButton solenoidButtonIn = new JoystickButton(driverJoystick, Constants.gamepadBButton);
     solenoidButtonIn.whenActive(new InstantCommand(() -> intake.solenoid.toggle(), intake));
   }
