@@ -48,13 +48,6 @@ public class DriveTrain extends SubsystemBase {
 		// This method will be called once per scheduler run
 	}
 	
-	/**
-	 * @param l
-	 * @param r
-	 */
-	/*	public void tankDrive(double l, double r) {
-		drive.tankDrive(l, r);
-	} */
 	public void driveWithJoysticks(Joystick driverJoystick, double speed)
 	{
 		drive.arcadeDrive(driverJoystick.getRawAxis(Constants.GP_LEFT_Y_AXIS) * speed, driverJoystick.getRawAxis(Constants.GP_LEFT_X_AXIS) * speed);

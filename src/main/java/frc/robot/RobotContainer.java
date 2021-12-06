@@ -40,7 +40,7 @@ public class RobotContainer {
 		
 		driveTrain.setDefaultCommand(new DriveWithJoysticks(driveTrain, Constants.DRIVETRAINSPEED));
 		driveForwardTimed = new DriveForwardTimed(driveTrain, Constants.DRIVE_FORWARD_TIME, Constants.AUTONOMOUS_SPEED);
-		collectBall = new RunIntakeMotor(intake);
+		collectBall = new RunIntakeMotor(intake, Constants.INTAKE_SPEED);
 		
 		// Configure the button bindings
 		configureButtonBindings();

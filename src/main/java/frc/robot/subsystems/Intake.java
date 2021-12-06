@@ -19,14 +19,15 @@ public class Intake extends SubsystemBase {
 	/** Creates a new Intake. */
 	public Intake() {
 		intake = new CANSparkMax(Constants.INTAKE_MOTOR, MotorType.kBrushed);
+		//TODO: what are all these? can we remove them?
 		//intake.restoreFactoryDefaults();
 		//intake.setSmartCurrentLimit(40);
 		intake.setIdleMode(IdleMode.kBrake);
-		// intake.setInverted(true); //not sure
+		// intake.setInverted(true);
 		// intake.burnFlash();
 		
-		solenoid = new DoubleSolenoid(Constants.PCM_CAN_ID, 1, 2);
-		solenoid.set(DoubleSolenoid.Value.kForward);
+		solenoid = new DoubleSolenoid(Constants.PCM_CAN_ID, 1, 2); //TODO: move these to constants
+		solenoid.set(DoubleSolenoid.Value.kForward); //TODO: is this correct? test this
 	}
 	
 	@Override
@@ -34,24 +35,26 @@ public class Intake extends SubsystemBase {
 		// This method will be called once per scheduler run
 	}
 	
-	public void setSpeed(double speed){
+	public void setSpeed(double speed) {
 		intake.set(speed);
 	}
-	
-	public void collectBall(double speed){
-		intake.set(speed);
-	}
-	
-	public void stop(){
+		
+	public void stop() {
 		intake.stopMotor();
 		intake.set(0);
 	}
 	
-	public void forward(){
+	public void toggle() {
+		if (solenoid.get() == DoubleSolenoid.Value.kOff) 
+			solenoid.set(DoubleSolenoid.Value.kReverse); //TODO: make sure this shouldnt be forwards
+		else solenoid.toggle();
+	}
+	
+	public void forward() {
 		solenoid.set(DoubleSolenoid.Value.kForward);
 	}
 	
-	public void reverse(){
+	public void reverse() {
 		solenoid.set(DoubleSolenoid.Value.kReverse);	
 	}
 }
