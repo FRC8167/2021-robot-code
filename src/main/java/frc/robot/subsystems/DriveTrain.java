@@ -14,6 +14,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DriveTrain extends SubsystemBase {
+	//TODO: look up "velocity mode" - compensates for slightly different speeds
+	//TODO: look up "position mode" (USE THIS??? v good for autonomous)
+	//TODO: look up motion profiling
+	//
 	WPI_TalonFX leftFront = new WPI_TalonFX(Constants.LEFT_FRONT);
 	WPI_TalonFX rightFront = new WPI_TalonFX(Constants.RIGHT_FRONT);
 	WPI_TalonFX leftBack = new WPI_TalonFX(Constants.LEFT_BACK);
