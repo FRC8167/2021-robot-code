@@ -33,7 +33,7 @@ public class RobotContainer {
 	private final DriveForwardTimed driveForwardTimed;
 	
 	/** The container for the robot. Contains subsystems, OI devices, and commands. */
-		public RobotContainer() {
+	public RobotContainer() {
 		driveTrain = new DriveTrain();
 		intake = new Intake();
 		driverJoystick = new Joystick(Constants.JOYSTICK_NUMBER);
