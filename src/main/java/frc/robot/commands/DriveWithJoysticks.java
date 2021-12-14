@@ -9,38 +9,38 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrain;
 
 public class DriveWithJoysticks extends CommandBase {
-  private final DriveTrain drivetrain;
-  final double speed;
-  
-  /** Creates a new DriveWithJoysticks. */
-  public DriveWithJoysticks(DriveTrain drivetrain, double speed) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    this.drivetrain = drivetrain;
-	this.speed = speed;
-    addRequirements(this.drivetrain);
-  }
+	private final DriveTrain drivetrain;
+	final double speed;
+	
+	/** Creates a new DriveWithJoysticks. */
+	public DriveWithJoysticks(DriveTrain drivetrain, double speed) {
+		// Use addRequirements() here to declare subsystem dependencies.
+		this.drivetrain = drivetrain;
+		this.speed = speed;
+		addRequirements(this.drivetrain);
+	}
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-	  
-  }
+	// Called when the command is initially scheduled.
+	@Override
+	public void initialize() {
+		
+	}
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    drivetrain.driveWithJoysticks(RobotContainer.driverJoystick, speed);
-  }
+	// Called every time the scheduler runs while the command is scheduled.
+	@Override
+	public void execute() {
+		drivetrain.driveWithJoysticks(RobotContainer.driverJoystick, speed);
+	}
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-	  
-  }
+	// Called once the command ends or is interrupted.
+	@Override
+	public void end(boolean interrupted) {
+		
+	}
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+	// Returns true when the command should end.
+	@Override
+	public boolean isFinished() {
+		return false;
+	}
 }
